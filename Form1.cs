@@ -56,13 +56,7 @@ namespace crud
             txHarga.Clear();
             txStok.Clear();
         }
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void btSimpan_Click(object sender, EventArgs e)
         {
             if (txID.Text == "" || txNamaBrg.Text == "")
@@ -91,7 +85,7 @@ namespace crud
             using (MySqlConnection conn = konek.GetConn())
             {
                 conn.Open();
-                cmd = new MySqlCommand("Update barang set id_barang=@id_barang, nama_barang=@nama_barang, harga=@harga, stok=@stok", conn);
+                cmd = new MySqlCommand("Update barang set id_barang=@id_barang, nama_barang=@nama_barang, harga=@harga, stok=@stok where id_barang=@id_barang", conn);
                 cmd.Parameters.AddWithValue("@id_barang", txID.Text);
                 cmd.Parameters.AddWithValue("@nama_barang", txNamaBrg.Text);
                 cmd.Parameters.AddWithValue("@harga", txHarga.Text);
